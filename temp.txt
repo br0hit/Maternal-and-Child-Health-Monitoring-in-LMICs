@@ -1,4 +1,368 @@
-####   ROhit Findings #####
+### Missing data : 
+
+Training Labels Missing Values:
+DHSID                               0
+DHSYEAR                             0
+DHSCLUST                            0
+LATNUM                              0
+LONGNUM                             0
+Mean_BMI                        18517
+Median_BMI                      18517
+Unmet_Need_Rate                  1867
+Under5_Mortality_Rate           29623
+Skilled_Birth_Attendant_Rate    33279
+Stunted_Rate                    58047
+URBAN_RURA                          0
+dtype: int64
+
+
+
+
+
+## Gee features which affect stunted rate : 
+
+seasonality_min@JRC/GSW1_2/GlobalSurfaceWater,
+ESP_max@LANDFIRE/Vegetation/ESP/v1_2_0/HI,
+
+
+#### 
+BRDF_Albedo_Band_Mandatory_Quality_Band7_median@MODIS/006/MCD43A1&timestamped,
+####
+
+
+Percent_NonTree_Vegetation_median@MODIS/006/MOD44B&timestamped,
+Percent_NonVegetated_SD_median@MODIS/006/MOD44B&timestamped,
+Percent_NonVegetated_median@MODIS/006/MOD44B&timestamped,
+Percent_Tree_Cover_SD_median@MODIS/006/MOD44B&timestamped,
+
+
+
+
+
+    Mean_BMI and Median_BMI:
+        Anthropometric measurements: Features related to height, weight, body mass index (BMI), or other indicators of nutritional status.
+        Dietary intake: Features related to caloric intake, macronutrient distribution, and micronutrient adequacy.
+        Socioeconomic factors: Features such as income, education, and access to nutritious food that influence overall nutritional status.
+
+    Stunted_Rate:
+        Adequate nutrition: Features related to access to nutritious food, breastfeeding practices, and dietary diversity.
+        Sanitation and hygiene: Features related to clean water, sanitation facilities, and hygiene practices that impact child growth and development.
+        Socioeconomic factors: Features such as income, education, and healthcare access that affect child growth and nutritional outcomes.
+
+     Under5_Mortality_Rate:
+        Access to healthcare: Features related to the availability and quality of healthcare services, including prenatal care, immunization, and child health interventions.
+        Sanitation and hygiene: Features related to clean water, sanitation facilities, and hygiene practices that impact child health.
+        Socioeconomic factors: Features such as poverty, education, and access to resources that influence child mortality rates.
+
+    Unmet_Need_Rate:
+        Contraceptive use: Features related to the prevalence and types of contraceptive methods used.
+        Family planning services: Features related to the availability and accessibility of family planning services and information.
+        Socioeconomic factors: Features such as education, empowerment, and cultural norms that may affect the use of contraception.
+
+    Skilled_Birth_Attendant_Rate:
+        Maternal healthcare services: Features related to the availability and utilization of prenatal care, skilled birth attendants, and emergency obstetric care.
+        Health facility infrastructure: Features related to the presence of healthcare facilities, their quality, and accessibility.
+        Socioeconomic factors: Features such as education, income, and cultural beliefs that may influence the preference for skilled birth attendance.
+
+  
+
+
+
+`       ####  Satellite features which indirectly affect health : for BMI and Stunted_Rate
+
+        Satellite features which affect nutrition ( mainly corps/ agriculture  ..... )
+        Satellite features related to water ( water bodies/ rainfall ....)
+
+        ####  Satellite features which indirectly affect economy : for Unmet Need rate and Skilled birth 
+
+        Satellite features which affect econommy ( Urban/ Rural kind of thing, Better healtcare, healt facilities )
+
+
+
+
+
+##############    Satellite features affecting health     ######################
+
+
+    NDVI_median@MODIS/006/MYD13Q1&timestamped: Normalized Difference Vegetation Index (NDVI) is a measure of vegetation greenness and can provide insights into the overall health and productivity of ecosystems. It can indirectly relate to factors such as access to nutritious food and environmental conditions.
+
+    FAPAR_mean@NOAA/CDR/AVHRR/LAI: Fraction of Absorbed Photosynthetically Active Radiation (FAPAR) represents the fraction of sunlight absorbed by vegetation for photosynthesis. It indicates the photosynthetic activity and vitality of vegetation, which can impact factors like food availability and nutritional quality.
+
+    tree-coverfraction_skew@COPERNICUS/Landcover/100m/Proba-V-C3/Global&timestamped: Skewness of tree cover fraction provides information about the distribution of tree cover across an area. Tree cover is important for various environmental and ecological factors, including habitat quality, climate regulation, and ecosystem services.
+
+    spei270d_stdDev@GRIDMET/DROUGHT&timestamped: Standard deviation of the Standardized Precipitation-Evapotranspiration Index (SPEI) over a 270-day period. SPEI is an indicator of drought conditions, which can have a significant impact on agricultural productivity, food security, and child health.
+
+    LandCover_median@ESA/CCI/FireCCI/5: Median value of land cover information from the ESA CCI FireCCI dataset. Land cover plays a crucial role in determining environmental conditions, including vegetation type, urbanization, and land use patterns, which can affect factors related to health and nutrition.
+
+
+        Input: jul@OpenLandMap/CLM/CLM_LST
+        jul: The month of July represents the time of the year, which can impact factors such as temperature, growing seasons, and agricultural productivity. It may influence the availability and quality of food resources.
+
+    Input: PET_min
+        PET_min: Minimum Potential Evapotranspiration (PET) is a measure of the amount of water that could be evaporated and transpired by plants under ideal conditions. It indicates the water demand of vegetation and can indirectly relate to factors such as agricultural productivity and water availability.
+
+    Input: mean_administrative
+        mean_administrative: This feature likely refers to the average administrative characteristics of a particular region. Administrative factors such as governance, healthcare infrastructure, and socioeconomic conditions can influence factors like healthcare access, public services, and overall development indicators.
+
+    Input: MidGreendown_2
+        MidGreendown_2: This feature could represent the timing or rate of mid-season vegetation greenness. It is an indicator of vegetation growth and can be related to factors like agricultural productivity, nutrient availability, and ecosystem health.
+
+    Input: avg_lights
+        avg_lights: Average lights may refer to nighttime lights data, which can provide insights into urbanization, economic activity, and population density. These factors can affect various socio-economic indicators, including healthcare access, nutritional resources, and overall living conditions.
+
+
+        Input: ET_mean@MODIS/006/MOD16A2&timestamped
+        ET_mean: Average Evapotranspiration (ET) represents the amount of water evaporated and transpired by plants and the land surface. It is a critical factor for understanding water availability and can indirectly influence factors such as agricultural productivity and vegetation health.
+
+    Input: PET_kurtosis@MODIS/NTSG/MOD16A2/105&timestamped
+        PET_kurtosis: Kurtosis of Potential Evapotranspiration (PET) measures the shape of the distribution of PET values. It can provide insights into the variability and distribution patterns of water demand, which may impact water availability, agricultural practices, and vegetation growth.
+
+    Input: pet_median@IDAHO
+        pet_median: Median value of PET (Potential Evapotranspiration) represents the central tendency of PET values. PET is an indicator of water demand by plants and the land surface, which can indirectly relate to factors such as agricultural productivity, vegetation health, and water availability.
+
+    Input: Percent_Tree
+        Percent_Tree: This feature likely represents the percentage of tree cover in a specific area. Tree cover plays a crucial role in ecosystem services, carbon sequestration, and overall environmental health. It can impact factors such as air quality, temperature regulation, and biodiversity, which may indirectly influence the factors of interest.
+
+    Input: smp_skew@NASA
+        smp_skew: Skewness of soil moisture content (smp) provides information about the asymmetry of the distribution of soil moisture values. Soil moisture is essential for plant growth and agriculture, and its availability can affect factors such as crop yield, agricultural productivity, and water resources.
+
+
+
+    nput: treecover2000_max@UMD/hansen/global
+
+    treecover2000_max: Maximum tree cover fraction in the year 2000. Tree cover is an important factor that can influence various ecological processes, carbon sequestration, and habitat quality.
+
+Input: water-permanent-coverfraction_min
+
+    water-permanent-coverfraction_min: Minimum cover fraction of permanent water bodies. Permanent water bodies, such as lakes and reservoirs, can affect factors such as hydrology, climate, and biodiversity.
+
+Input: spi30d_min
+
+    spi30d_min: Minimum value of Standardized Precipitation Index (SPI) over a 30-day period. SPI is an indicator of drought conditions and can provide insights into water availability, which may impact factors such as agricultural productivity and water-related health issues.
+
+Input: bio04_max@WORLDCLIM/V1/BIO
+
+    bio04_max: Maximum value of Bioclimatic Variable 4 (Temperature seasonality). Temperature seasonality can affect various biological processes, phenology, and ecological patterns.
+
+Input: spei14d_min
+
+    spei14d_min: Minimum value of Standardized Precipitation-Evapotranspiration Index (SPEI) over a 14-day period. SPEI combines precipitation and temperature information to assess water availability, which can impact factors such as crop yield and ecosystem health.
+
+        Input: Retrieved_Temperature
+        Retrieved_Temperature: Temperature retrieved or estimated from remote sensing data. It can provide information about surface temperature patterns and variations, which can impact factors such as climate, vegetation growth, and thermal characteristics of an area.
+
+    Input: PLE_mean@MODIS/NTSG/MOD16A2/105&timestamped
+        PLE_mean: Mean value of Potential Evapotranspiration (PLE). PLE represents the amount of water that could potentially be evaporated and transpired by vegetation and can indicate water availability and moisture stress, which can affect factors such as crop productivity and ecosystem dynamics.
+
+    Input: constant@CSP/ERGo/1_0/US/topoDiversity
+        constant: Topographic diversity constant. Topographic diversity can influence various environmental processes, including erosion, water flow, and habitat diversity.
+
+    Input: QA_skew@MODIS/006/MYD14A1&timestamped
+        QA_skew: Skewness of the Quality Assurance (QA) parameter. QA provides information about the reliability and quality of the associated data, and its skewness can indicate the distribution and consistency of data quality, which may affect data interpretation and analysis.
+
+    Input: crops-coverfraction_min
+        crops-coverfraction_min: Minimum cover fraction of crops. Crop cover fraction represents the extent of land area covered by crops and can affect factors such as agricultural productivity, land use patterns, and food security.
+
+        Input: NumCycles_max
+        NumCycles_max: Maximum number of cycles. This feature can be related to periodic patterns or cycles in the data, which may have implications for phenomena with recurrent behavior.
+
+    Input: spei1y_kurtosis@GRIDMET/DROUGHT&timestamped
+        spei1y_kurtosis: Kurtosis of the Standardized Precipitation-Evapotranspiration Index (SPEI) calculated over a 1-year period. SPEI is an indicator of drought conditions, and its kurtosis can provide insights into the distribution and variability of drought severity over time.
+
+    Input: spi2y_stdDev@GRIDMET/DROUGHT&timestamped
+        spi2y_stdDev: Standard deviation of the Standardized Precipitation Index (SPI) calculated over a 2-year period. SPI measures precipitation anomalies and can indicate wet or dry conditions. The standard deviation can reflect the variability of precipitation patterns over a longer time frame.
+
+    Input: ssm_skew@NASA
+        ssm_skew: Skewness of the Surface Soil Moisture (SSM) parameter. Skewness can provide information about the asymmetry and shape of the distribution of soil moisture values, which can be relevant for understanding hydrological processes and soil moisture dynamics.
+
+    Input: croplandc_stdDev@FAO/GHG/1/DROSE
+        croplandc_stdDev: Standard deviation of Cropland Carbon content. This feature represents the variability in carbon content within cropland areas and can be relevant for studying carbon dynamics, land management practices, and agricultural productivity.
+
+
+        Input: Lai_mean@MODIS/006/MCD15A3H&timestamped
+        Lai_mean: Mean Leaf Area Index (LAI) derived from MODIS data. LAI represents the amount of leaf area per unit ground area and is an important indicator of vegetation density and productivity.
+
+    Input: tasmax_skew@IDAHO
+        tasmax_skew: Skewness of maximum temperature (tasmax). Skewness measures the asymmetry of the distribution of maximum temperature values, providing insights into the shape and tail of the temperature distribution.
+
+    Input: B3_skew@LANDSAT/LT05/C01/T2
+        B3_skew: Skewness of Band 3 (red) reflectance from Landsat 5. Skewness can provide information about the distribution and spectral characteristics of the red band, which is useful for vegetation monitoring and land cover analysis.
+
+    Input: SummaryQA_mean@MODIS/006/MOD13A1&timestamped
+        SummaryQA_mean: Mean quality assessment (QA) value from MODIS Summary QA layer. QA values indicate the overall quality and reliability of the associated data, allowing for data quality filtering and assessment.
+
+    Input: Sensor_Azimuth
+        Sensor_Azimuth: Azimuth angle of the sensor. This feature represents the direction from which the remote sensing data was acquired, which can be relevant for understanding viewing geometry and the spatial orientation of the observations.
+
+
+       AVE_STK@JAXA/ALOS/AW3D30/V2: This feature represents the average stack height, which could potentially be associated with terrain characteristics that affect health outcomes.
+
+    EVI_mean@MODIS/006/MOD13A1&timestamped: This feature represents the mean value of the Enhanced Vegetation Index (EVI), which provides information about vegetation density. Vegetation plays a role in nutrition and overall health, so it could be related to the factors of interest.
+
+    Land_Fraction: This feature indicates the fraction of land in the area. Land cover types and their characteristics can influence the availability of resources and affect health indicators.
+
+    urban-coverfraction_median@COPERNICUS/Landcover/100m/Proba-V-C3/Global&timestamped: This feature represents the median value of urban land cover fraction. Urbanization can have various effects on health, including access to healthcare, food availability, and lifestyle factors.
+
+    population_median@WorldPop/GP/100m/pop&timestamped: This feature represents the median population density. Population density is an important factor that can influence health outcomes, including BMI, stunted height, and under-5 mortality rate.
+
+
+        vpd_kurtosis@IDAHO: This feature represents the kurtosis of vapor pressure deficit. Higher kurtosis values indicate greater variations in vapor pressure deficit, which may have implications for factors like BMI and mortality rates.
+
+    land_water: This feature represents the land-water classification. It can be relevant as the availability of water resources and access to safe water sources can influence both stunted height and under-5 mortality rate.
+
+    eddi30d_mean@GRIDMET/DROUGHT&timestamped: This feature represents the mean of the Evaporative Drought Demand Index (EDDI) over a 30-day period. Drought conditions can impact crop yields, food availability, and overall nutrition, potentially affecting BMI, stunted height, and under-5 mortality rate.
+
+    B4_median@LANDSAT/LM04/C01/T2&timestamped: This feature represents the median value of Band 4 reflectance from Landsat imagery. Band 4 is sensitive to vegetation health, and its values can be used to assess vegetation coverage, which may have implications for factors like BMI and stunted height.
+
+    LAI_QA: This feature represents the Quality Assurance (QA) score of Leaf Area Index (LAI) data. LAI is an indicator of vegetation density and can be associated with nutritional resources, which can affect factors like BMI and stunted height.
+
+
+        tree-coverfraction_median@COPERNICUS/Landcover/100m/Proba-V-C3/Global&timestamped: Tree cover fraction can be an indicator of environmental quality and access to green spaces, which can impact health and nutrition.
+
+    snowfall_median@ECMWF/ERA5: Snowfall can have indirect effects on factors like agriculture, food availability, and living conditions, which can influence health outcomes.
+
+    NDVI_min: Normalized Difference Vegetation Index (NDVI) reflects the density and health of vegetation, which is linked to environmental conditions, agriculture, and food security.
+
+    temperature_2m: Ambient temperature can affect various aspects of health, including metabolic rates, physical activity, and heat-related illnesses.
+
+    water_mask@CIESIN/GPWv411/GPW: Water availability and access to clean water sources are critical for hygiene, sanitation, and overall health.
+
+        NDVI_kurtosis@MODIS/006/MOD13A1&timestamped:
+    NDVI (Normalized Difference Vegetation Index) is commonly used as an indicator of vegetation health and can be associated with overall environmental conditions, which might have an impact on factors such as stunted height and under-5 mortality rate.
+
+    ObservedFlag_kurtosis@ESA/CCI/FireCCI/5:
+    The presence of fires, indicated by the ObservedFlag feature, can affect air quality and overall environmental conditions, potentially influencing factors like stunted height and under-5 mortality rate.
+
+    DayOfYear_mean@MODIS/006/MYD09A1&timestamped:
+    The mean day of the year can provide information about the seasonality of the data. Seasonal variations in factors such as temperature, precipitation, and vegetation growth might influence BMI, stunted height, and under-5 mortality rate.
+
+    PET_skew@MODIS/006/MOD16A2&timestamped:
+    PET (Potential Evapotranspiration) is a measure of the amount of water that could potentially be evaporated and transpired by plants. It can be indicative of water availability, which is important for the health and development of individuals, potentially impacting BMI, stunted height, and under-5 mortality rate.
+
+    tree-coverfraction_max:
+    The maximum tree cover fraction can reflect the presence and density of trees in a given area. Tree cover provides shade, affects temperature, and contributes to overall environmental conditions, potentially influencing factors like BMI, stunted height, and under-5 mortality rate.
+
+
+    SoilMoi00_10cm: Soil moisture content can indirectly impact agricultural productivity and food availability, which in turn can affect nutrition and child health outcomes.
+
+    waterClass_median@JRC/GSW1: This feature represents the median water class, which could be an indicator of water availability and access to clean drinking water, an important factor for child health and well-being.
+
+    pr_max: Maximum precipitation (rainfall) can influence agricultural productivity, water availability, and the prevalence of water-related diseases, which can impact child health outcomes.
+
+    b100@OpenLandMap/SOL/SOL_ORGANIC-CARBON: Soil organic carbon content can be related to soil fertility and nutrient availability for crops. Adequate soil fertility is important for agricultural productivity and the availability of nutrient-rich foods.
+
+    State_min: This feature could represent the minimum values of a state-level variable. The specific variable would need to be identified based on the dataset used. State-level factors such as healthcare infrastructure, education, and socio-economic indicators can have an impact on child health outcomes.
+
+    population_mean@WorldPop/GP/100m/pop&timestamped: This feature represents the mean population density. Population density has a significant impact on various health indicators, including the factors of interest.
+
+    Npp_mean@MODIS/006/MOD17A3HGF&timestamped: This feature represents the mean value of Net Primary Productivity (NPP), which provides insights into ecosystem productivity. Ecosystem productivity can indirectly influence factors like nutrition and overall health.
+
+    NDVI_mean@NOAA/CDR/AVHRR/NDVI/V5&timestamped: This feature represents the mean value of the Normalized Difference Vegetation Index (NDVI), which indicates vegetation health and density. Vegetation health is often associated with factors such as food availability and nutritional status.
+
+    urban-coverfraction_mean@COPERNICUS/Landcover/100m/Proba-V-C3/Global&timestamped: This feature represents the mean urban land cover fraction. Urbanization can have significant implications for health, including factors related to BMI, stunted height, and under-5 mortality rate.
+
+    spi1y_mean@GRIDMET/DROUGHT&timestamped: This feature represents the mean value of the Standardized Precipitation Index (SPI) over a 1-year period. Drought conditions, as indicated by SPI, can impact food availability, water resources, and overall health.
+
+    snow-coverfraction_kurtosis@COPERNICUS/Landcover/100m/Proba-V-C3/Global&timestamped: This feature represents the kurtosis of snow cover fraction, which could be related to climate conditions, water availability, and overall environmental factors affecting health.
+
+FireMask_median@MODIS/006/MOD14A2&timestamped: This feature represents the median value of the fire mask, indicating the presence and intensity of wildfires. Wildfires can have detrimental effects on air quality, food security, and overall health outcomes.
+
+eddi270d_skew@GRIDMET/DROUGHT&timestamped: This feature represents the skewness of the Evaporative Demand Drought Index (EDDI) over a 270-day period. EDDI is an indicator of drought conditions, which can impact food availability, water resources, and health.
+
+RelativeAzimuth_kurtosis@MODIS/006/MOD13Q1&timestamped: This feature represents the kurtosis of relative azimuth angle, which could be related to sun angle and illumination conditions. Sun angle and illumination can impact various environmental factors that affect health outcomes.
+
+    FirstDay_max: It's unclear what this feature represents without further context. If it refers to the maximum value of the "first day" of something, it may not directly correlate with BMI, stunted height, or under-5 mortality rate.
+
+    forest_type: The presence and quality of forests can indirectly affect factors like BMI, stunted height, and under-5 mortality rate by influencing the availability of nutritious food, air quality, and the environment. However, the specific impact depends on various factors and local conditions.
+
+    cropland_min: Similar to forests, cropland can play a role in food production and nutrition. Adequate access to diverse and nutritious crops can positively influence factors like BMI and stunted height.
+
+    population_kurtosis@WorldPop/GP/100m/pop&timestamped: This feature relates to population density and its statistical distribution. Higher population density may indicate urban areas with better access to healthcare, education, and resources, potentially contributing to better health outcomes such as lower under-5 mortality rates.
+
+    bio18_max@WORLDCLIM/V1/BIO: Bio18 represents the maximum temperature of the warmest month in the WorldClim dataset. Higher temperatures may have indirect effects on factors like BMI and stunted height through their impact on agricultural productivity, water availability, and overall living conditions.
+
+        EVI_skew@MODIS/006/MYD13A1&timestamped: EVI (Enhanced Vegetation Index) skewness represents the asymmetry of vegetation distribution. It can provide insights into vegetation health and density, which can indirectly impact factors like BMI and stunted height.
+
+    bio10_min@WORLDCLIM/V1/BIO: Bio10 represents the minimum temperature of the coldest month in the WorldClim dataset. Extreme temperatures can affect agricultural productivity, food availability, and living conditions, potentially influencing factors like BMI, stunted height, and under-5 mortality rate.
+
+    NDVI_skew@MODIS/006/MYD13A2&timestamped: NDVI (Normalized Difference Vegetation Index) skewness measures the distribution of vegetation density. It can indicate the overall health and productivity of vegetation, which is linked to factors such as food availability, nutrition, and general well-being.
+
+    spi14d_skew@GRIDMET/DROUGHT&timestamped: SPI (Standardized Precipitation Index) skewness captures the distribution of precipitation anomalies over a 14-day period. Skewed values can indicate extreme or abnormal precipitation patterns, which can impact agricultural productivity, water availability, and ultimately affect factors like BMI and under-5 mortality rate.
+
+    spei1y_mean@GRIDMET/DROUGHT&timestamped: SPEI (Standardized Precipitation-Evapotranspiration Index) mean over 1 year provides insights into long-term water availability. Water scarcity or excess can affect agricultural productivity, food security, and overall health, including factors related to BMI and under-5 mortality rate.
+
+
+    EVI_skew@MODIS/006/MYD13A2&timestamped:
+
+    EVI (Enhanced Vegetation Index) skewness represents the asymmetry of vegetation density distribution.
+    It provides insights into the health and density of vegetation.
+    Vegetation health and density can indirectly impact factors like BMI, stunted height, and under-5 mortality rate by reflecting the availability of food, nutrition, and overall environmental conditions.
+
+bio06_min@WORLDCLIM/V1/BIO:
+
+    Bio06 represents the minimum temperature of the coldest quarter in the WorldClim dataset.
+    Extreme temperatures can affect agricultural productivity, food availability, and living conditions.
+    Such conditions can have implications for factors like BMI, stunted height, and under-5 mortality rate, as they influence food security, nutrition, and general well-being.
+
+spei270d_median@GRIDMET/DROUGHT&timestamped:
+
+    SPEI (Standardized Precipitation-Evapotranspiration Index) median over 270 days indicates long-term drought conditions.
+    Drought can significantly impact agriculture, water resources, and overall environmental conditions.
+    These conditions, in turn, can affect factors like BMI, stunted height, and under-5 mortality rate through reduced food availability, malnutrition, and health issues related to water scarcity.
+
+FireMask_stdDev@MODIS/006/MYD14A2&timestamped:
+
+    The standard deviation of the FireMask feature reflects the variability of fire occurrences in the area.
+    Fires can impact air quality, vegetation health, and environmental conditions.
+    These factors can indirectly influence factors like BMI, stunted height, and under-5 mortality rate by affecting the overall health and well-being of individuals in the area.
+
+NDVI_mean@MODIS/006/MYD13A2&timestamped:
+
+    NDVI (Normalized Difference Vegetation Index) mean provides information about the overall health and density of vegetation.
+    Vegetation health is closely related to factors such as food availability, nutrition, and environmental conditions.
+    These factors can have implications for BMI, stunted height, and under-5 mortality rate, as they affect the quality of food, access to resources, and overall well-being
+
+
+
+        SoilMoi00_10cm: Soil moisture content can indirectly impact agricultural productivity and food availability, which in turn can affect nutrition and child health outcomes.
+
+    waterClass_median@JRC/GSW1: This feature represents the median water class, which could be an indicator of water availability and access to clean drinking water, an important factor for child health and well-being.
+
+    pr_max: Maximum precipitation (rainfall) can influence agricultural productivity, water availability, and the prevalence of water-related diseases, which can impact child health outcomes.
+
+    b100@OpenLandMap/SOL/SOL_ORGANIC-CARBON: Soil organic carbon content can be related to soil fertility and nutrient availability for crops. Adequate soil fertility is important for agricultural productivity and the availability of nutrient-rich foods.
+
+    State_min: This feature could represent the minimum values of a state-level variable. The specific variable would need to be identified based on the dataset used. State-level factors such as healthcare infrastructure, education, and socio-economic indicators can have an impact on child health outcomes.
+
+
+    pei180d_mean@GRIDMET/DROUGHT&timestamped:
+
+    spei180d_mean represents the mean value of SPEI (Standardized Precipitation-Evapotranspiration Index) over 180 days.
+    SPEI is an indicator of drought or wet conditions and provides insights into long-term water availability.
+    Drought or excess moisture can have significant implications for agriculture, water resources, and overall environmental conditions, which in turn can affect factors like BMI, stunted height, and under-5 mortality rate.
+
+bio07_max@WORLDCLIM/V1/BIO:
+
+    bio07_max represents the maximum value of the BIO07 variable from WorldClim dataset, which is related to temperature.
+    Temperature can influence the availability of resources, plant growth, and overall environmental conditions, thereby indirectly impacting factors like BMI, stunted height, and under-5 mortality rate.
+
+surface_runoff:
+
+    Surface runoff refers to the water that flows over the land surface.
+    Surface runoff plays a crucial role in water availability, hydrological processes, and ecosystem health.
+    It can indirectly affect factors like BMI, stunted height, and under-5 mortality rate through its impact on water resources, agriculture, and environmental conditions.
+
+StateQA_median@MODIS/006/MYD09A1&timestamped:
+
+    StateQA_median represents the median value of State Quality Assurance for the MODIS MYD09A1 dataset.
+    State Quality Assurance provides information about the quality and reliability of the data.
+    It ensures that the data used for analysis is of good quality, which is essential for drawing accurate conclusions about factors like BMI, stunted height, and under-5 mortality rate.
+
+DetailedQA_median@MODIS/006/MYD13A1&timestamped:
+
+    DetailedQA_median represents the median value of Detailed Quality Assurance for the MODIS MYD13A1 dataset.
+    Detailed Quality Assurance provides additional information on the quality and reliability of the data, including cloud contamination and other artifacts.
+    It helps in identifying and excluding unreliable data points, ensuring the accuracy of analyses related to factors like BMI, stunted height, and under-5 mortality rate.
 
 
 
@@ -8,12 +372,3 @@
 
 
 
-####  Raghuvar Findings  ####
-
-
-
-
-
-
-
-#### Alok Findings   ####
