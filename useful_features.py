@@ -19,4 +19,4 @@ filtered_gee_features = filtered_gee_features[filtered_gee_features['DHSID'].isi
 filtered_gee_features = filtered_gee_features[['DHSID', 'DHSYEAR', 'DHSCLUST', 'LATNUM', 'LONGNUM','URBAN_RURA']]
 
 # Save the filtered data to useful_features.csv
-filtered_gee_features.to_csv('useful_features.csv', index=False)
+filtered_gee_features.to_csv('data/useful_features.csv', index=False)
