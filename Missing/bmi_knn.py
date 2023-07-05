@@ -9,7 +9,7 @@ data = pd.read_csv('../data/training_label.csv')
 columns_with_missing = ['Mean_BMI', 'Median_BMI']
 
 # Create a new DataFrame with only the columns of interest
-df = data[['DHSID', 'LATNUM', 'LONGNUM'] + columns_with_missing].copy()
+df = data[['DHSID', 'DHSYEAR', 'DHSCLUST', 'LATNUM', 'LONGNUM', 'Mean_BMI', 'Median_BMI', 'Unmet_Need_Rate', 'Under5_Mortality_Rate', 'Skilled_Birth_Attendant_Rate', 'Stunted_Rate', 'URBAN_RURA']].copy()
 
 # Separate the rows with missing values from the rows with known values
 known_data = df.dropna().reset_index(drop=True)  # Reset the index
